@@ -2,6 +2,13 @@
 # define STATEMENT_CLASS
 
 # include "Buffer.h"
+# include "Row.h"
+# include "Table.h"
+# include "Database.h"
+# include <vector>
+# include <stdexcept>
+
+using namespace std;
 
 enum StatementType {
     STATEMENT_INSERT,
@@ -10,14 +17,19 @@ enum StatementType {
 
 class Statement {
     public:
-        Statement ();
+        Statement (Table *tableTo);
         ~Statement ();
-        void prepareStatement (Buffer *inputBuffer);
+        void prepareStatement (Buffer *inputBuffer, Database *database);
         void executeStatement ();
         StatementType getType ();
     
     private:
+        void executeInsert ();
+        void executeSelect ();
         StatementType type;
+        Row *rowToInsert;
+        Table *tableTo;
+        Database *database;
 
 };
 
