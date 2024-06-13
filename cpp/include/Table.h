@@ -12,6 +12,7 @@ using namespace std;
 class Table {
     public:
         Table (map<string, AbstractDataType*> datatypes, vector<string> attrNames);
+        ~Table ();
         vector<Page*> getPages ();
         map<string, AbstractDataType*> getDatatypes ();
         Page* getPage (uint32_t rowNum);

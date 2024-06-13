@@ -21,6 +21,8 @@ Statement::Statement (Table *tableTo) {
 }
 
 Statement::~Statement () {
+    delete rowToInsert;
+    delete tableTo;
 }
 
 /* the SQL compiler */
@@ -72,32 +74,39 @@ void Statement::prepareStatement (Buffer *inputBuffer, Database *database) {
     throw Exceptions::UnrecognizedStatement("Unrecognized Statement");
 }
 
-void Statement::executeSelect () {
+void Statement::executeSelect (ostream& output) {
     vector<Row*> rows = tableTo->getRows();
     // FOR NOW, PRINT EVERY ROW
     for (vector<Row*>::iterator itr_rows = rows.begin(); itr_rows != rows.end(); ++itr_rows) {
-            (*itr_rows)->printRow();
-            cout << "\n";
+            (*itr_rows)->printRow(output);
+            output << "\n";
+            //cout << "\n";
+    }
+
+    /* free memory from allocated rows */
+    for (vector<Row*>::iterator itr_rows = rows.begin(); itr_rows != rows.end(); ++itr_rows) {
+        delete *itr_rows;
     }
 }
 
-void Statement::executeInsert () {
+void Statement::executeInsert (ostream& output) {
     try {
         tableTo->insertRow(this -> rowToInsert);
         tableTo->setNumRows();
+        output << "Executed\n";
     } catch (runtime_error& e) {
         throw;
     }
 }
 
 /* the "Virtual Machine" */
-void Statement::executeStatement () {
+void Statement::executeStatement (ostream& output) {
     switch (this->type) {
         case StatementType::STATEMENT_INSERT:
-            executeInsert();
+            executeInsert(output);
             break;
         case StatementType::STATEMENT_SELECT:
-            executeSelect();
+            executeSelect(output);
             break;
     }
 }

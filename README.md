@@ -26,3 +26,22 @@ The “front-end” of sqlite is a SQL compiler that parses a string and outputs
 This bytecode is passed to the virtual machine, which executes it.
 
 ![alt text](imgs/sqlite_arch2.png)
+
+
+### Building and Running
+
+To build and run the REPL interpreter:
+
+```sh
+$ make run
+```
+
+### Testing
+
+Testing is performed using the testing framework [doctest](https://github.com/doctest/doctest).
+To run each test in the tests folder:
+
+```sh
+$ make test
+```
+

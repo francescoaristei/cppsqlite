@@ -7,6 +7,7 @@
 class Page {
     public:
         Page ();
+        ~Page ();
         void* getRows ();
         void serializeRow (Row *source, void *destination);
         void deserializeRow (void *source, Row *destination, vector<AbstractDataType*> datatypes);

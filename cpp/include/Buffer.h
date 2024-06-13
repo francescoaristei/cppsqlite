@@ -11,6 +11,7 @@ class Buffer {
         Buffer ();
         ~Buffer ();
         void setBuffer ();
+        void setBuffer (string s);
         string getBuffer ();
         size_t getBufferLength ();
         ssize_t getInputLength ();

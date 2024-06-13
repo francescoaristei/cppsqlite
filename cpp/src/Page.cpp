@@ -18,6 +18,10 @@ Page::Page () {
     this -> rows = new void*[PAGE_SIZE];
 }
 
+Page::~Page () {
+    delete[] this -> rows;
+}
+
 void Page::serializeRow (Row *source, void *destination) {
     vector<uint32_t> rowSizes = source -> getSizes();
     vector<uint32_t> rowOffsets = source -> getOffsets();

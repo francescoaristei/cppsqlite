@@ -10,5 +10,7 @@ const uint32_t PAGE_SIZE = 4096;
 
 bool isANumber (const string& token);
 
+// WHEN TABLES WILL BE LOADED FROM DISK, HERE METHOD THAT RETURNS THE DATABASE WITH ALL TABLES
+
 # endif
 

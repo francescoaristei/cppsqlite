@@ -19,7 +19,7 @@ class Row {
         void addAttribute (AbstractDataType *attribute);
         void addOffset (uint32_t offset);
         void addSize (uint32_t size);
-        void printRow ();
+        void printRow (ostream& output);
     
     private:
         vector<AbstractDataType*> attributes;

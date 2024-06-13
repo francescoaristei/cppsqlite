@@ -25,6 +25,16 @@ Table::Table (map<string, AbstractDataType*> datatypes, vector<string> attrNames
     this -> numRows = 0;
 }
 
+Table::~Table () {
+    for (vector<Page*>::iterator itr = this -> pages.begin(); itr != this -> pages.end(); ++itr) {
+        delete *itr;
+    }
+
+    for (map<string, AbstractDataType*>::iterator itr = this -> datatypes.begin(); itr != this -> datatypes.end(); ++itr) {
+        delete itr->second;
+    }
+}
+
 
 Page* Table::getPage (uint32_t rowNum) {
     uint32_t pageNum = rowNum / this -> rowsPerPage;

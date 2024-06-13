@@ -20,12 +20,12 @@ class Statement {
         Statement (Table *tableTo);
         ~Statement ();
         void prepareStatement (Buffer *inputBuffer, Database *database);
-        void executeStatement ();
+        void executeStatement (ostream& output);
         StatementType getType ();
     
     private:
-        void executeInsert ();
-        void executeSelect ();
+        void executeInsert (ostream& output);
+        void executeSelect (ostream& output);
         StatementType type;
         Row *rowToInsert;
         Table *tableTo;

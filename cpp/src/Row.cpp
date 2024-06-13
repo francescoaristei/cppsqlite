@@ -48,7 +48,9 @@ Row::Row () {
 
 
 Row::~Row () {
-
+    for (vector<AbstractDataType*>::iterator itr = this -> attributes.begin(); itr != this->attributes.end(); ++itr) {
+        delete *itr;
+    }
 }
 
 vector<AbstractDataType*> Row::getAttributes () {
@@ -76,13 +78,17 @@ void Row::addSize (uint32_t size) {
     this -> sizes.push_back(size);
 }
 
-void Row::printRow () {
-    cout << "[";
+void Row::printRow (ostream& output) {
+    //cout << "[";
+    output << "[";
     for (vector<AbstractDataType*>::iterator itr = this -> attributes.begin(); itr != this -> attributes.end(); ++itr) {
         if (itr + 1 == this -> attributes.end())
-            cout << (*itr)->toString();
+            //cout << (*itr)->toString();
+            output << (*itr)->toString();
         else
-            cout << (*itr)->toString() << ", ";
+            //cout << (*itr)->toString() << ", ";
+            output << (*itr)->toString() << ", ";
     }
-    cout << "]";
+    output << "]";
+    //cout << "]";
 }

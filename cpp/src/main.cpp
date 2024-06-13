@@ -56,7 +56,7 @@ int main () {
     /* ------------------------------- */
 
     Buffer *inputBuffer = new Buffer ();
-    /* TO-DO: move exception throwing in the constructor and delete prepareStatement */
+
     Statement *statement = new Statement (tableTo);
 
     /* TO-DO: create object from tables extracted from disk */
@@ -77,8 +77,8 @@ int main () {
 
         try {
             statement->prepareStatement (inputBuffer, database);
-            statement->executeStatement();
-            cout << "Executed\n";
+            statement->executeStatement(cout);
+            //cout << "Executed\n";
         } catch (Exceptions::UnrecognizedStatement& e) {
             cout << e.getMessage() << "\n";
         } catch (Exceptions::SyntaxError& e) {
@@ -87,4 +87,9 @@ int main () {
             cout << e.getMessage() << "\n";
         }
     }
+
+    /* free memory */
+    delete inputBuffer;
+    delete statement;
+    delete database;
 }

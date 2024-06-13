@@ -10,7 +10,9 @@ Database::Database () {
 }
 
 Database::~Database () {
-
+    for (map<string, Table*>::iterator itr = tables.begin(); itr != tables.end(); ++itr) {
+        delete itr->second;
+    }
 }
 
 Table* Database::getTable (string name) {
