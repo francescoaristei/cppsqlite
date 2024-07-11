@@ -8,7 +8,6 @@
 # include <string>
 # include <cstring>
 # include <any>
-
 # include <iostream>
 
 using namespace std;
@@ -88,4 +87,9 @@ void Page::deserializeRow (void *source, Row *destination, vector<AbstractDataTy
 
 void* Page::getRows () {
     return this -> rows;
+}
+
+
+void Page::setRows (void *rows) {
+    this -> rows = rows;
 }

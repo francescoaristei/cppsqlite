@@ -1,7 +1,6 @@
 # include <iostream>
 # include "Buffer.h"
 # include "Statement.h"
-
 # include "Uint32_t.h"
 # include "VarChar255.h"
 # include "Exceptions.h"
@@ -38,7 +37,8 @@ int main () {
 
     /* ---------TEMPORARY---------- */
     /* Table should be extracted from the Database object storing all the tables */
-    map<string, AbstractDataType*> datatypes;
+    /* Specifically, will have database reading dbinfo from dbinfo.txt and Pager reading raw pages (set of rows) from various file, one for each table */
+    /*map<string, AbstractDataType*> datatypes;
     vector<string> attrNames;
     string attr1 = "id";
     string attr2 = "username";
@@ -52,12 +52,13 @@ int main () {
     datatypes[attr1] = id;
     datatypes[attr2] = username;
     datatypes[attr3] = email;
-    Table *tableTo = new Table (datatypes, attrNames);
+    Table *tableTo = new Table (datatypes, attrNames);/*
     /* ------------------------------- */
 
     Buffer *inputBuffer = new Buffer ();
 
-    Statement *statement = new Statement (tableTo);
+    //Statement *statement = new Statement (tableTo);
+    Statement *statement = new Statement ();
 
     /* TO-DO: create object from tables extracted from disk */
     Database *database = new Database ();
@@ -74,11 +75,9 @@ int main () {
                 cout << e.getMessage() << "\n";
             }
         }
-
         try {
             statement->prepareStatement (inputBuffer, database);
             statement->executeStatement(cout);
-            //cout << "Executed\n";
         } catch (Exceptions::UnrecognizedStatement& e) {
             cout << e.getMessage() << "\n";
         } catch (Exceptions::SyntaxError& e) {

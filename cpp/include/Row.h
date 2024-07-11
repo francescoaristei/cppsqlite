@@ -6,8 +6,6 @@
 # include "AbstractDataType.h"
 
 
-
-
 class Row {
     public:
         Row (vector<AbstractDataType*> attributes);

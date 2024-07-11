@@ -79,16 +79,12 @@ void Row::addSize (uint32_t size) {
 }
 
 void Row::printRow (ostream& output) {
-    //cout << "[";
     output << "[";
     for (vector<AbstractDataType*>::iterator itr = this -> attributes.begin(); itr != this -> attributes.end(); ++itr) {
         if (itr + 1 == this -> attributes.end())
-            //cout << (*itr)->toString();
             output << (*itr)->toString();
         else
-            //cout << (*itr)->toString() << ", ";
             output << (*itr)->toString() << ", ";
     }
     output << "]";
-    //cout << "]";
 }

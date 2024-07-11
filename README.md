@@ -36,6 +36,15 @@ To build and run the REPL interpreter:
 $ make run
 ```
 
+#### Example Usage
+
+1. Create a table: create tablename uint32_t id varchar32 attribute1 varchar32 attribute2 uint32_t attribute3.
+    - Example: create table1 uint32_t id varchar32 username varchare32 email.
+2. Insert tuples: insert into tablename value_attribute1 value_attribute2 ... value_attributeN.
+    - Example: insert into table1 1 johndoe john.doe@email.it.
+3. Select tuples: select from tablename.
+    - Example: select from table1.
+
 ### Testing
 
 Testing is performed using the testing framework [doctest](https://github.com/doctest/doctest).
