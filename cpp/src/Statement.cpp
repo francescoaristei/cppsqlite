@@ -14,9 +14,7 @@
 
 using namespace std;
 
-/* TEMPORARY: tableTo is set in the prepareStatement, obtained from database, reading the table of the query */
 Statement::Statement () {
-    //this -> tableTo = tableTo;
 }
 
 Statement::~Statement () {
@@ -143,7 +141,6 @@ void Statement::executeSelect (ostream& output) {
 void Statement::executeInsert (ostream& output) {
     try {
         this -> tableTo->insertRow(this -> rowToInsert);
-        //this -> tableTo->setNumRows();
         output << "Executed\n";
     } catch (runtime_error& e) {
         throw;

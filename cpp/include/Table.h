@@ -16,7 +16,6 @@ class Table {
         ~Table ();
         vector<Page*> getPages ();
         map<string, AbstractDataType*> getDatatypes ();
-        //Page* getPage (uint32_t rowNum);
         void setNumRows ();
         void insertRow (Row *row);
         vector<Row*> getRows ();
@@ -25,11 +24,8 @@ class Table {
         Pager* getPager ();
 
     private:
-        //uint32_t rowsPerPage;
-        //uint32_t rowSize;
         uint32_t numRows;
         Pager *pager;
-        //vector<Page*> pages;
         vector<string> attrNames;
         map<string, AbstractDataType*> datatypes;
 

@@ -8,22 +8,6 @@
 # include <vector>
 # include <any>
 
-/* 
-PROBLEMS:
-- The number of rows written is incorrect. It is written a number of rows = numPages * rowsPerPage. Should be written the number
-   of rows actually inserted.
-*/
-
-/*
-TO-DEBUG:
-
-To check the content of the binary file: cat cpp/src/database/table1.txt | hexdump -C
-Probably the problem is in the flushPage method, Should it resamble the serializeRow method?
-
-Moreover, the way the serializeRow method writes in the void* array could be wrong now that the page is loaded from file:
-is the numRows correct now? Is taking into consideration the rows already in the page, loaded from the file storing the table?
-*/
-
 using namespace std;
 
 
@@ -75,8 +59,6 @@ Page* Pager::getPage (uint32_t rowNum) {
     Page *page = this -> pages[pageNum];
     if (page == nullptr) {
         page = this -> pages[pageNum] = new Page();
-        //uint32_t numPages = this -> fileLength / PAGE_SIZE;
-
         /* save partial page at the end of file */
         if (this -> fileLength % PAGE_SIZE) {
             this -> numPages += 1;
@@ -137,7 +119,6 @@ vector<Row*> Pager::getRows (vector<string> attrNames, uint32_t numRows) {
 }
 
 uint32_t Pager::getNumRows () {
-    //return this -> numPages * this -> rowsPerPage;
     return this -> numOfRows;
 }
 
@@ -146,7 +127,6 @@ void Pager::closeTable (uint32_t numRows) {
     uint32_t numFullPages = numRows / this -> rowsPerPage;
     if (!numFullPages) { /* if only 1 page (and not full) */
         if (this -> pages[0] != nullptr) {
-            //this -> flushPage(0, PAGE_SIZE);
             this -> flushPage(0, this -> rowSize * this -> numOfRows);
             this -> pages[0] = nullptr;
         }
@@ -155,7 +135,6 @@ void Pager::closeTable (uint32_t numRows) {
             if (this -> pages[i] == nullptr) {
                 continue;
             }
-            //this -> flushPage(i, PAGE_SIZE);
             this -> flushPage(i, this -> rowSize * this -> numOfRows);
             this -> pages[i] = nullptr;
         }

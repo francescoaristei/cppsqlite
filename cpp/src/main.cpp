@@ -9,8 +9,6 @@
 using namespace std;
 
 /* REPL to perform operation and to retrieve data on the database */
-
-
 void printPrompt () {
     cout << "db > ";
 }
@@ -35,32 +33,8 @@ void doMetaCommand (Buffer *inputBuffer) {
 
 int main () {
 
-    /* ---------TEMPORARY---------- */
-    /* Table should be extracted from the Database object storing all the tables */
-    /* Specifically, will have database reading dbinfo from dbinfo.txt and Pager reading raw pages (set of rows) from various file, one for each table */
-    /*map<string, AbstractDataType*> datatypes;
-    vector<string> attrNames;
-    string attr1 = "id";
-    string attr2 = "username";
-    string attr3 = "email";
-    attrNames.push_back(attr1);
-    attrNames.push_back(attr2);
-    attrNames.push_back(attr3);
-    Uint32_t *id = new Uint32_t();
-    VarChar32 *username = new VarChar32();
-    VarChar32 *email = new VarChar32();
-    datatypes[attr1] = id;
-    datatypes[attr2] = username;
-    datatypes[attr3] = email;
-    Table *tableTo = new Table (datatypes, attrNames);/*
-    /* ------------------------------- */
-
     Buffer *inputBuffer = new Buffer ();
-
-    //Statement *statement = new Statement (tableTo);
     Statement *statement = new Statement ();
-
-    /* TO-DO: create object from tables extracted from disk */
     Database *database = new Database ();
 
     while (true) {

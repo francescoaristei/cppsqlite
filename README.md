@@ -44,6 +44,8 @@ $ make run
     - Example: insert into table1 1 johndoe john.doe@email.it.
 3. Select tuples: select from tablename.
     - Example: select from table1.
+4. Exit from the program: exit.
+    - The tuples added will flushed from the cache and stored on disk in the right table in the database files.
 
 ### Testing
 

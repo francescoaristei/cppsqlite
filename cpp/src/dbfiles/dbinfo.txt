@@ -1,1 +1,1 @@
-table1(uint32_t,varchar32,varchar255)id,name,email
+test_table(uint32_t,varchar32,varchar255)id,name,email
